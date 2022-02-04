@@ -11,7 +11,7 @@ export function renderGoblin(goblinData) {
     hpEl.textContent = goblinData.hp < 0 ? 0 : goblinData.hp;
 
     faceEl.id = `goblin-face-${goblinData.id}`;
-    faceEl.textContent = goblinData.hp > 0 ? 'need face' : 'death face';
+    faceEl.textContent = goblinData.hp > 0 ? '😈' : '🔥';
 
     if (goblinData.hp < 0) {
         goblinEl.classList.add('dead');   

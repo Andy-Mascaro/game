@@ -6,7 +6,7 @@ const form = document.querySelector('form');
 const goblinListEl = document.querySelector('.goblins');
 
 let defeatedGoblinsCount = 0;
-let playerHp = Math.ceil(Math.random () * 10);
+let playerHp = (10);
 let goblins = [
     { id: 1, name: 'Blake', hp: Math.ceil(Math.random () * 5,) },
     { id: 2, name: 'Boss', hp: Math.ceil(Math.random () * 10,) }
@@ -35,6 +35,7 @@ form.addEventListener('submit', (e) => {
 
 
 function goblinClickHandler(goblinData) {
+    if (playerHp < 0) return;
     if (goblinData.hp < 0) return;
     if (Math.random() < 0.33) {
         goblinData.hp--;
@@ -52,7 +53,7 @@ function goblinClickHandler(goblinData) {
         defeatedGoblinsCount++;
     }
     if (playerHp === 0) {
-        adventurerImgEl.classList.add('game-over-you-died');
+        adventurerImgEl.classList.add('game-over');
         alert('Game Over You Died!!!');
     }
 
@@ -64,7 +65,7 @@ function goblinClickHandler(goblinData) {
     hpEl.textContent = goblinData.hp < 0 ? 0 : goblinData.hp;
 
     const faceEl = document.getElementById(`goblin-face-${goblinData.id}`);
-    faceEl.textContent = goblinData.hp > 0 ? 'need goblin face' : 'need dead goblin';
+    faceEl.textContent = goblinData.hp > 0 ? '😈' : '🔥';
 }
 function displayGoblins(){
     goblinListEl.textContent = '' ;
@@ -74,7 +75,7 @@ function displayGoblins(){
 
         goblinEl.addEventListener('click', () => {
             goblinClickHandler(goblin);
-
+         
            
         });
 
