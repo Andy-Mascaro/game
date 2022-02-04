@@ -1,9 +1,9 @@
 import { renderGoblin } from './game-utils.js';
-const defeatedNumberEl = document.getElementById('defeated-number');
-const adventurerHpEl = document.getElementById('adventurer-hp');
-const adventurerImgEl = document.getElementById('adventurer-img');
-const form = document.getElementById('form');
-const goblinListEl = document.getElementById('goblins');
+const defeatedNumberEl = document.querySelector('#defeated-number');
+const adventurerHpEl = document.querySelector('#adventurer-hp');
+const adventurerImgEl = document.querySelector('#adventurer-img');
+const form = document.querySelector('form');
+const goblinListEl = document.querySelector('.goblins');
 
 let defeatedGoblinsCount = 0;
 let playerHp = Math.ceil(Math.random () * 10);
@@ -21,7 +21,7 @@ form.addEventListener('submit', (e) => {
     const newGoblin = {
         id: currentId,
         name: goblinName,
-        hp: Math.ceil(Math.random () * 5)
+        hp: Math.ceil(Math.random () * 5),
     };
     currentId++;
 
@@ -30,6 +30,8 @@ form.addEventListener('submit', (e) => {
     displayGoblins();
 
 });
+
+
 
 
 function goblinClickHandler(goblinData) {
@@ -65,7 +67,7 @@ function goblinClickHandler(goblinData) {
     faceEl.textContent = goblinData.hp > 0 ? 'need goblin face' : 'need dead goblin';
 }
 function displayGoblins(){
-    goblinListEl.textContent = '';
+    goblinListEl.textContent = '' ;
 
     for (let goblin of goblins) {
         const goblinEl = renderGoblin(goblin);
