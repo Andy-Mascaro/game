@@ -52,7 +52,7 @@ function goblinClickHandler(goblinData) {
 adventurerHpEl.textContent = playerHp;
 defeatedNumberEl.textContent = defeatedGoblinsCount;
 
-const hpEl = document.getElementById(`goblin-hp-${'goblinData.id'}`);
+const hpEl = document.getElementById(`goblin-hp-${goblinData.id}`);
 hpEl.textContent = goblinData.hp < 0 ? 0 : goblinData.hp;
 
 const faceEl = document.getElementById(`goblin-face-${goblinData.id}`);
@@ -62,28 +62,12 @@ function displayGoblins(){
     goblinListEl.textContent = '';
 
     for (let goblin of goblins) {
-      const goblinEl = renderGoblin('goblin');
+        const goblinEl = renderGoblin('goblin');
 
-      goblinEl.addEventListener('click', () => {
-       goblinClickHandler('goblin');
+        goblinEl.addEventListener('click', () => {
+            goblinClickHandler('goblin');
 
-       });
+        });
+    }
 
 }
-
-
-
-
-
-
-
-
-
-// import functions and grab DOM elements
-
-// let state
-
-// set event listeners 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
