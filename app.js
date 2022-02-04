@@ -21,7 +21,7 @@ form.addEventListener('submit', (e) => {
     const newGoblin = {
         id: currentId,
         name: goblinName,
-        hp: Math.ceil(Math.random () * 5),
+        hp: Math.ceil(Math.random () * 5)
     };
     currentId++;
 
@@ -34,11 +34,17 @@ form.addEventListener('submit', (e) => {
 
 function goblinClickHandler(goblinData) {
     if (goblinData.hp < 0) return;
-    if (Math.random() < .33) {
+    if (Math.random() < 0.33) {
         goblinData.hp--;
         alert('you hit' + goblinData.name);
     } else {
         alert('you tired to hit' + goblinData.name + 'but you missed');
+    }
+    if (Math.random () < 0.5){
+        playerHp--;
+        alert(goblinData.name + 'hit you!');
+    } else {
+        alert(goblinData.name + 'tried to hit you but missed!');
     }
     if (goblinData.hp === 0){
         defeatedGoblinsCount++;
@@ -47,27 +53,33 @@ function goblinClickHandler(goblinData) {
         adventurerImgEl.classList.add('game-over-you-died');
         alert('Game Over You Died!!!');
     }
+
+
+    adventurerHpEl.textContent = playerHp;
+    defeatedNumberEl.textContent = defeatedGoblinsCount;
+
+    const hpEl = document.getElementById(`goblin-hp-${goblinData.id}`);
+    hpEl.textContent = goblinData.hp < 0 ? 0 : goblinData.hp;
+
+    const faceEl = document.getElementById(`goblin-face-${goblinData.id}`);
+    faceEl.textContent = goblinData.hp > 0 ? 'need goblin face' : 'need dead goblin';
 }
-
-adventurerHpEl.textContent = playerHp;
-defeatedNumberEl.textContent = defeatedGoblinsCount;
-
-const hpEl = document.getElementById(`goblin-hp-${goblinData.id}`);
-hpEl.textContent = goblinData.hp < 0 ? 0 : goblinData.hp;
-
-const faceEl = document.getElementById(`goblin-face-${goblinData.id}`);
-faceEl.textContent = goblinData.hp > 0 ? 'need goblin face' : 'need dead goblin';
-
 function displayGoblins(){
     goblinListEl.textContent = '';
 
     for (let goblin of goblins) {
-        const goblinEl = renderGoblin('goblin');
+        const goblinEl = renderGoblin(goblin);
 
         goblinEl.addEventListener('click', () => {
-            goblinClickHandler('goblin');
+            goblinClickHandler(goblin);
 
+           
         });
+
+        
+        goblinListEl.append(goblinEl);
     }
 
 }
+
+displayGoblins();
