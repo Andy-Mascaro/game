@@ -133,10 +133,12 @@ footer {
 
 .goblin-stats button {
     font-size: 2em;
+   
 }
 .goblin-stats input {
     font-size: 3rem;
     width: 80%
+    
 }
 
 .defeated-goblins { 
