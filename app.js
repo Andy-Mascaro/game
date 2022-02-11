@@ -6,7 +6,7 @@ const form = document.querySelector('form');
 const goblinListEl = document.querySelector('.goblins');
 
 let defeatedGoblinsCount = 0;
-let playerHp = (10);
+let playerHp = (1);
 let goblins = [
     { id: 1, name: 'Blake', hp: Math.ceil(Math.random () * 5,) },
     { id: 2, name: 'Boss', hp: Math.ceil(Math.random () * 10,) }
@@ -15,6 +15,7 @@ let currentId = 3;
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (playerHp <= 0) return;
     const data = new FormData(form);
     const goblinName = data.get('goblin-name');
 
